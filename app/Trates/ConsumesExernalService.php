@@ -3,7 +3,6 @@
 namespace App\Trates;
 
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Log;
 
 trait ConsumesExernalService
 {
@@ -13,6 +12,10 @@ trait ConsumesExernalService
         $cliente = new Client([
             'base_uri' => $this->baseUri,
         ]);
+
+        if(isset($this->secret)){
+            $headers["Authorization"] = $this->secret;
+        }
 
         $response = $cliente->request($method, $resquestUrl, [
             'form_params' => $formParams,
