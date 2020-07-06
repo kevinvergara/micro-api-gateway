@@ -14,4 +14,29 @@ class BookService
     {
         $this->baseUri = config('services.books.base_uri');
     }
+
+    public function obtenerBooks()
+    {
+        return $this->performanRequest('GET', '/books');
+    }
+
+    public function createBook($data)
+    {
+        return $this->performanRequest('POST', '/books', $data);
+    }
+
+    public function obtenerBook($book)
+    {
+        return $this->performanRequest('GET', "/books/{$book}");
+    }
+
+    public function editBook($data, $book)
+    {
+        return $this->performanRequest('PUT', "/books/{$book}", $data);
+    }
+
+    public function borrarBook($book)
+    {
+        return $this->performanRequest('DELETE', "/books/{$book}");
+    }
 }

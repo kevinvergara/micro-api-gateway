@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Trates\ConsumesExernalService;
-use Illuminate\Support\Facades\Log;
 
 class AuthorService
 {
@@ -24,5 +23,20 @@ class AuthorService
     public function createAuthor($data)
     {
         return $this->performanRequest('POST', '/authors', $data);
+    }
+
+    public function obtenerAuthor($author)
+    {
+        return $this->performanRequest('GET', "/authors/{$author}");
+    }
+
+    public function editAuthor($data, $author)
+    {
+        return $this->performanRequest('PUT', "/authors/{$author}", $data);
+    }
+
+    public function borrarAuthor($author)
+    {
+        return $this->performanRequest('DELETE', "/authors/{$author}");
     }
 }
